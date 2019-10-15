@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<User>> fetchUsers(http.Client client) async {
@@ -50,11 +51,9 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Пользователи'),
-      ),
-      body: FutureBuilder<List<User>>(
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(middle: Text('List of users')),
+      child: FutureBuilder<List<User>>(
         future: fetchUsers(http.Client()),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
@@ -75,10 +74,17 @@ class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: users.length*2,
+      itemCount: users.length,
       itemBuilder: (context, index) {
-        return index.isOdd ? Text(users[index~/2].name) : Divider();
+        return fancyListCard(user: users[index]);
       },
+    );
+  }
+
+  fancyListCard({User user}) {
+    return Container(
+      height: 60,
+      child: Card(elevation: 2, child: Text(user.name)),
     );
   }
 }

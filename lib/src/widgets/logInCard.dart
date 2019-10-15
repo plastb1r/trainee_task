@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class LogInCard extends StatefulWidget {
   LogInCard({Key key, @required this.onButtonPress}) : super(key: key);
 
-  var onButtonPress;
+  final Widget onButtonPress;
 
   @override
   _LogInCardState createState() => _LogInCardState();
@@ -62,14 +62,18 @@ class _LogInCardState extends State<LogInCard> {
 
   fancyButton(String label) => MaterialButton(
         color: Theme.of(context).accentColor,
-        child: Text(label),
-        minWidth: 150,
+        disabledColor: Colors.grey[300],
+        child: Text(
+          label,
+          style: TextStyle(color: Colors.white),
+        ),
         onPressed: _isBtnEnabled
             ? () {
                 Navigator.push(context,
                     CupertinoPageRoute(builder: (_) => widget.onButtonPress));
               }
             : null,
+        minWidth: 200,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       );
 

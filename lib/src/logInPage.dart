@@ -9,12 +9,12 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       title: 'Trainee Task',
-      theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+      theme: CupertinoThemeData(
+        barBackgroundColor: Colors.white,
         primaryColor: Colors.lightBlue[700],
-        accentColor: Colors.lightBlue[500],
+        primaryContrastingColor: Colors.lightBlue[500],
       ),
       home: LogInPage(
           backgroundImage:
