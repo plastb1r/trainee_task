@@ -17,12 +17,13 @@ class ListPage extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasError)
               Center(
-                  child: Column(
-                children: <Widget>[
-                  Icon(Icons.error_outline),
-                  Text('Не удалось загрузить информацию ;(')
-                ],
-              ));
+                child: Column(
+                  children: <Widget>[
+                    Icon(Icons.error_outline),
+                    Text('Не удалось загрузить информацию ;(')
+                  ],
+                ),
+              );
             return snapshot.hasData
                 ? UserList(users: snapshot.data)
                 : Center(child: CircularProgressIndicator());
@@ -94,11 +95,13 @@ class _UserListState extends State<UserList> {
           ),
         ),
         onTapDown: (_) {
-          setState(() {
-            _popUpCardIndx == index
-                ? _popUpCardIndx = null
-                : _popUpCardIndx = index;
-          });
+          setState(
+            () {
+              _popUpCardIndx == index
+                  ? _popUpCardIndx = null
+                  : _popUpCardIndx = index;
+            },
+          );
         },
       );
 

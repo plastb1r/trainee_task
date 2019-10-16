@@ -44,11 +44,12 @@ class LogInPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                      padding: EdgeInsets.only(left: 5, bottom: 25),
-                      child: Text(
-                        'Вход',
-                        style: TextStyle(fontSize: 35.0, color: Colors.white),
-                      )),
+                    padding: EdgeInsets.only(left: 5, bottom: 25),
+                    child: Text(
+                      'Вход',
+                      style: TextStyle(fontSize: 35.0, color: Colors.white),
+                    ),
+                  ),
                   LogInCard(onButtonPress: ListPage()),
                 ],
               ),
