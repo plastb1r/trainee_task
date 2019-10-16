@@ -29,33 +29,31 @@ class LogInPage extends StatelessWidget {
   final Image backgroundImage;
 
   @override
-  Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      resizeToAvoidBottomInset: false,
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          backgroundImage,
-          Positioned(
-            bottom: 10,
-            top: 70,
-            left: 25,
-            right: 25,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                    padding: EdgeInsets.only(left: 5, bottom: 25),
-                    child: Text(
-                      'Вход',
-                      style: TextStyle(fontSize: 35.0, color: Colors.white),
-                    )),
-                LogInCard(onButtonPress: ListPage()),
-              ],
+  Widget build(BuildContext context) => CupertinoPageScaffold(
+        resizeToAvoidBottomInset: false,
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            backgroundImage,
+            Positioned(
+              bottom: 10,
+              top: 70,
+              left: 25,
+              right: 25,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                      padding: EdgeInsets.only(left: 5, bottom: 25),
+                      child: Text(
+                        'Вход',
+                        style: TextStyle(fontSize: 35.0, color: Colors.white),
+                      )),
+                  LogInCard(onButtonPress: ListPage()),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 }

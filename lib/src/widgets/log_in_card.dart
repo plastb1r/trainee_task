@@ -46,22 +46,21 @@ class _LogInCardState extends State<LogInCard> {
       );
 
   fancyTextField(
-      String label, TextEditingController controller, bool isObscure) {
-    return Padding(
-      padding: EdgeInsets.all(5),
-      child: TextFormField(
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-        obscureText: isObscure,
-        controller: controller,
-        autofocus: false,
-        decoration: InputDecoration(
-          border: UnderlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).primaryColor)),
-          labelText: label,
+          String label, TextEditingController controller, bool isObscure) =>
+      Padding(
+        padding: EdgeInsets.all(5),
+        child: TextFormField(
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          obscureText: isObscure,
+          controller: controller,
+          autofocus: false,
+          decoration: InputDecoration(
+            border: UnderlineInputBorder(
+                borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+            labelText: label,
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   fancyButton(String label) => MaterialButton(
         color: Theme.of(context).primaryColor,
