@@ -9,14 +9,14 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "program": "lib/src/logInPage.dart"
+            "program": "lib/src/log_in_page.dart"
         },
         {
             "name": "Flutter_debug",
             "request": "launch",
             "type": "dart",
             "flutterMode":"debug",
-            "program": "lib/src/logInPage.dart"
+            "program": "lib/src/log_in_page.dart"
         }
     ]
 }

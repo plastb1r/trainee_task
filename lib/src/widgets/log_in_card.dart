@@ -11,17 +11,17 @@ class LogInCard extends StatefulWidget {
 }
 
 class _LogInCardState extends State<LogInCard> {
-  final TextEditingController loginController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _isBtnEnabled = false;
 
   void initState() {
-    loginController.addListener(() {
-      setState(() => _isBtnEnabled = loginController.value.text.isNotEmpty &&
+    emailController.addListener(() {
+      setState(() => _isBtnEnabled = emailController.value.text.isNotEmpty &&
           passwordController.value.text.isNotEmpty);
     });
     passwordController.addListener(() {
-      setState(() => _isBtnEnabled = loginController.value.text.isNotEmpty &&
+      setState(() => _isBtnEnabled = emailController.value.text.isNotEmpty &&
           passwordController.value.text.isNotEmpty);
     });
     super.initState();
@@ -29,30 +29,33 @@ class _LogInCardState extends State<LogInCard> {
 
   @override
   build(BuildContext context) => Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.only(left: 40, right: 40, top: 45, bottom: 50),
           child: Column(
             children: <Widget>[
-              fancyTextField('логин', loginController),
-              fancyTextField('пароль', passwordController),
+              fancyTextField('Email', emailController, false),
+              fancyTextField('Пароль', passwordController, true),
               Padding(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.only(top: 40),
                   child: fancyButton('Войти')),
             ],
           ),
         ),
       );
 
-  fancyTextField(String label, TextEditingController controller) {
+  fancyTextField(
+      String label, TextEditingController controller, bool isObscure) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       child: TextFormField(
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        obscureText: isObscure,
         controller: controller,
         autofocus: false,
         decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+          border: UnderlineInputBorder(
               borderSide: BorderSide(color: Theme.of(context).primaryColor)),
           labelText: label,
         ),
@@ -61,8 +64,8 @@ class _LogInCardState extends State<LogInCard> {
   }
 
   fancyButton(String label) => MaterialButton(
-        color: Theme.of(context).accentColor,
-        disabledColor: Colors.grey[300],
+        color: Theme.of(context).primaryColor,
+        disabledColor: CupertinoColors.lightBackgroundGray,
         child: Text(
           label,
           style: TextStyle(color: Colors.white),
@@ -73,12 +76,12 @@ class _LogInCardState extends State<LogInCard> {
                     CupertinoPageRoute(builder: (_) => widget.onButtonPress));
               }
             : null,
-        minWidth: 200,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        minWidth: 300,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       );
 
   dispose() {
-    loginController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
