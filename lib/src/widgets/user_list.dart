@@ -66,13 +66,7 @@ class _UserListState extends State<UserList> {
           ),
         ),
         onTapDown: (_) {
-          setState(
-            () {
-              _popUpCardIndx == index
-                  ? _popUpCardIndx = null
-                  : _popUpCardIndx = index;
-            },
-          );
+          _changePopUpIndexCallBack(index);
         },
       );
 
@@ -104,4 +98,14 @@ class _UserListState extends State<UserList> {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
         );
+
+  void _changePopUpIndexCallBack(int index) {
+    setState(
+      () {
+        _popUpCardIndx == index
+            ? _popUpCardIndx = null
+            : _popUpCardIndx = index;
+      },
+    );
+  }
 }

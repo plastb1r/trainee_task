@@ -35,8 +35,8 @@ class _LogInCardState extends State<LogInCard> {
           padding: EdgeInsets.only(left: 40, right: 40, top: 45, bottom: 50),
           child: Column(
             children: <Widget>[
-              fancyTextField('Email', emailController, false),
-              fancyTextField('Пароль', passwordController, true),
+              fancyTextField('Email', emailController, isObscure: false),
+              fancyTextField('Пароль', passwordController, isObscure: true),
               Padding(
                   padding: EdgeInsets.only(top: 40),
                   child: fancyButton('Войти')),
@@ -45,8 +45,8 @@ class _LogInCardState extends State<LogInCard> {
         ),
       );
 
-  fancyTextField(
-          String label, TextEditingController controller, bool isObscure) =>
+  fancyTextField(String label, TextEditingController controller,
+          {bool isObscure}) =>
       Padding(
         padding: EdgeInsets.all(5),
         child: TextFormField(

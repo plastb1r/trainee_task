@@ -50,6 +50,7 @@ class LogInPage extends StatelessWidget {
                       style: TextStyle(fontSize: 35.0, color: Colors.white),
                     ),
                   ),
+                  //todo создать "правильный" сдвиг формы входа при появлении клавиатуры
                   LogInCard(onButtonPress: ListPage()),
                 ],
               ),

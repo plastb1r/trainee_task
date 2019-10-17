@@ -12,9 +12,10 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(middle: Text('List of users')),
+        navigationBar: CupertinoNavigationBar(middle: Text('Пользователи')),
         child: FutureBuilder<List<User>>(
           future: fetchUsers(http.Client()),
+          //todo не получить "корректное" состояние ошибки
           builder: (context, snapshot) {
             if (snapshot.hasError)
               Center(
