@@ -23,21 +23,38 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LogInPage extends StatelessWidget {
+class LogInPage extends StatefulWidget {
   LogInPage({Key key, this.backgroundImage}) : super(key: key);
 
   final Image backgroundImage;
 
+  final double bottom = 180;
+  final double bottomWithInset = 10;
+
   @override
-  Widget build(BuildContext context) => CupertinoPageScaffold(
-        resizeToAvoidBottomInset: false,
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            backgroundImage,
-            Positioned(
-              bottom: 10,
-              top: 70,
+  _LogInPageState createState() => _LogInPageState();
+}
+
+class _LogInPageState extends State<LogInPage> {
+  bool keyBoardOn = false;
+  double keyBoardInset = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    _checkKeyBoard(context);
+    return CupertinoPageScaffold(
+      resizeToAvoidBottomInset: false,
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          widget.backgroundImage,
+          AnimatedContainer(
+            curve: Curves.easeIn,
+            duration: Duration(milliseconds: 1000),
+            child: Positioned(
+              bottom: keyBoardOn
+                  ? keyBoardInset + widget.bottomWithInset
+                  : widget.bottom,
               left: 25,
               right: 25,
               child: Column(
@@ -45,17 +62,32 @@ class LogInPage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.only(left: 5, bottom: 25),
-                    child: Text(
-                      'Вход',
-                      style: TextStyle(fontSize: 35.0, color: Colors.white),
+                    child: Opacity(
+                      opacity:
+                          keyBoardOn ? 0 : 1,
+                      child: Text(
+                        'Вход',
+                        style: TextStyle(fontSize: 35.0, color: Colors.white),
+                      ),
                     ),
                   ),
-                  //todo создать "правильный" сдвиг формы входа при появлении клавиатуры
                   LogInCard(onButtonPress: ListPage()),
                 ],
               ),
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
+  }
+
+  _checkKeyBoard(BuildContext context) {
+    keyBoardInset = MediaQuery.of(context).viewInsets.bottom;
+    setState(() {
+      if (keyBoardInset > 0)
+        keyBoardOn = true;
+      else
+        keyBoardOn = false;
+    });
+  }
 }
